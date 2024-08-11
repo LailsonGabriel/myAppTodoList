@@ -4,5 +4,5 @@ export type GlobalContext = {
   tasks: ITask[];
   createNewTask: (task: string) => void;
   deleteTask: (id: number) => void;
-  checkedOrNo: (id: number) => void;
+  toggleTaskChecked: (id: number) => void;
 };

@@ -33,11 +33,11 @@ export default function Home() {
           </S.Touchable>
         </S.RowView>
         <FlatList
-          contentContainerStyle={{ marginTop: 10, gap: 10 }}
+          style={{ flex: 1 }}
+          contentContainerStyle={{ marginTop: 10, paddingBottom: 20, gap: 10  }}
           data={tasks}
           renderItem={renderItem}
-          scrollEnabled={false}
-          keyExtractor={(item) => item.id.toString()}
+          showsVerticalScrollIndicator={false}
         />
       </S.Content>
      </S.Container>

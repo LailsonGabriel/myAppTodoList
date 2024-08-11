@@ -4,7 +4,7 @@ import MyGlobalContext from "./context/MyGlobalContext";
 const RootLayout = () => {
   return (
     <MyGlobalContext>
-      <Stack>
+      <Stack initialRouteName="login" screenOptions={{ headerShown: false }}>
         <Stack.Screen
           name="login"
           options={{

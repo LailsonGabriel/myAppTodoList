@@ -9,6 +9,7 @@ export const Container = styled.View`
 `; 
 
 export const Content = styled.View`
+  flex: 1;
   width: 80%;
   margin-top: -20px;
   position: relative;

@@ -7,11 +7,11 @@ import { ITasks } from "../../models/task.model";
 import { useGlobalContext } from "../../context/GlobalContext";
 
 export default function Task({ title, id }: ITasks) {
-  const { tasks, deleteTask, checkedOrNo } = useGlobalContext();
+  const { tasks, deleteTask, toggleTaskChecked } = useGlobalContext();
   const isChecked = tasks.find((task) => task.id === id)?.checked;
 
   const handleCheck = () => {
-    checkedOrNo(id);
+    toggleTaskChecked(id);
   };
 
   const handleDeleteTask = () => {

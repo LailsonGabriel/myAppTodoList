@@ -7,10 +7,7 @@ import { Stack } from 'expo-router'
 export default function InitialRoute() {
   return (
     <MyGlobalContext>
-      <Stack>
-        <Stack.Screen name='login' />
-        <Stack.Screen name='home' />
-      </Stack>
+      <Login />
     </MyGlobalContext>
   )
 }
