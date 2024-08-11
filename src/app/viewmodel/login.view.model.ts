@@ -21,7 +21,8 @@ export const LoginViewModel = (): ILoginViewModel => {
 
   const onSubmit = () => {
     setLoading(true);
-    // router.push('login');
+    router.push('home');
+    setLoading(true);
   };
 
   return {
