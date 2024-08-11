@@ -20,13 +20,18 @@ export default function Task({ title, id }: ITasks) {
 
   return (
     <S.Container>
-      <S.Touchable onPress={handleCheck}>
-        {<Icon size={20} name={isChecked ? "check-circle" : "checkbox-blank-circle-outline"} color={colors.bg} />}
+      <S.Touchable onPress={handleCheck} testID="checkbox-button">
+        <Icon
+          size={20}
+          name={isChecked ? "check-circle" : "checkbox-blank-circle-outline"}
+          color={colors.bg}
+          testID="checkbox-icon"
+        />
       </S.Touchable>
       <S.Text>
         {title}
       </S.Text>
-      <S.Touchable onPress={handleDeleteTask}>
+      <S.Touchable onPress={handleDeleteTask} testID="delete-button">
         <Icon size={20} name="trash-can" color={colors.bg} />
       </S.Touchable>
     </S.Container>

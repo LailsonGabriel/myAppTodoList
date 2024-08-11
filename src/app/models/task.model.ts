@@ -1,7 +1,7 @@
 export interface ITask {
   id: number;
   title: string;
-  checked: boolean;
+  checked?: boolean;
 }
 
 export interface ITasks extends ITask {
