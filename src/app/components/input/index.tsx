@@ -23,7 +23,7 @@ const Input = forwardRef((props: InputProps, ref) => {
       <S.TextInputStyled
         textAlign="center"
         secureTextEntry={sec}
-        keyboardType={props.type}
+        keyboardType={props.type ?? "default"}
         placeholder={props.placeholder}
         autoCapitalize='none'
         onChangeText={props.onChangeText}

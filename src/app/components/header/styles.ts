@@ -21,3 +21,5 @@ export const TextTitle = styled.Text`
   font-style: italic;
   color: ${colors.bg};
 `;
+
+

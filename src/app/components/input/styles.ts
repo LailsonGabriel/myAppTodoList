@@ -15,6 +15,7 @@ export const TextInputStyled = styled.TextInput.attrs({
   border-radius: 5px;
   border-color: ${colors.primary};
   color: ${colors.primary};
+  background-color: ${colors.bg};
 `;
 
 export const Label = styled.Text`
