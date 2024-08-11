@@ -4,7 +4,7 @@ import colors from '../../theme/colors';
 
 export const ContainerBox = styled.View`
   max-height: 64px;
-  width: 80%;
+  width: 100%;
 `;
 
 export const TextInputStyled = styled.TextInput.attrs({

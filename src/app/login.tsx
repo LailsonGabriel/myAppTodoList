@@ -4,9 +4,10 @@ import Input from "./components/input";
 
 import * as S from './styles/login.style';
 import { LoginViewModel } from "./viewmodel/login.view.model";
+import Button from "./components/button";
 
 export default function Login() {
-  const { cpf, setCpf } = LoginViewModel();
+  const { cpf, setCpf, loading, onSubmit } = LoginViewModel();
 
   return (
     <S.Container>
@@ -19,6 +20,7 @@ export default function Login() {
         value={cpf}
         onChangeText={setCpf}
       />
+      <Button loading={loading} title={"ACESSAR"} onPress={onSubmit} disabled={false} />
     </S.Container>
   );
 }

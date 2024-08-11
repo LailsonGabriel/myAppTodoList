@@ -19,6 +19,6 @@ export const TextButton = styled.Text`
 `;
 
 export const Loading = styled.ActivityIndicator.attrs({
-  color: "white"
+  color: "white",
 })`
 `;
