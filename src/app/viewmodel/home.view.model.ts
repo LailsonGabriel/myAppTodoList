@@ -1,37 +1,21 @@
 import { useState } from "react"
-import { ITask } from "../models/task.model"
 import { IHomeViewModel } from "../models/home.model";
+import { useGlobalContext } from "../context/GlobalContext";
 
 export const HomeViewModel = (): IHomeViewModel => {
-  const [tasks, setTasks] = useState<ITask[]>([]);
+  const { tasks, createNewTask } = useGlobalContext();
   const [search, setSearch] = useState<string>("");
-  console.log(tasks, tasks)
 
-  const createNewTask = () => {
-    setTasks((tasks) => [...tasks, { id: Math.random(), title: search, checked: false }]);
+  const handleCreateNewTask = () => {
+    if(search === "") return;
+
+    createNewTask(search);
     setSearch("");
   };
-
-  const deleteTask = (id: number) => {
-    setTasks((tasks) => tasks.filter((task) => task.id !== id));
-  };
-
-  const checkedOrNo = (id: number) => {
-    setTasks((tasks) => 
-      tasks.map((task) => {
-        if (task.id === id) return { ...task, checked: !task.checked };
-        return task;
-      })
-    );
-  };
-  
   
   return {
-    tasks,
-    createNewTask,
+    createNewTask: handleCreateNewTask,
     search,
-    setSearch,
-    deleteTask,
-    checkedOrNo
+    setSearch
   }
 }

@@ -16,10 +16,12 @@ export const Content = styled.View`
 `;
 
 export const RowView = styled.View`
+  width: 80%;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 10px;
+  margin: 0 auto;
 `;
 
 export const StyledIcon = styled(Icon).attrs({

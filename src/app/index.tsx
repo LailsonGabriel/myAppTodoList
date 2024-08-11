@@ -1,11 +1,16 @@
 import { View } from 'react-native'
 import React from 'react'
 import Login from './login'
+import MyGlobalContext from './context/MyGlobalContext'
+import { Stack } from 'expo-router'
 
 export default function InitialRoute() {
   return (
-    <View style={{ marginTop: 20 }}>
-      <Login />
-    </View>
+    <MyGlobalContext>
+      <Stack>
+        <Stack.Screen name='login' />
+        <Stack.Screen name='home' />
+      </Stack>
+    </MyGlobalContext>
   )
 }

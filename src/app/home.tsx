@@ -7,9 +7,11 @@ import Input from './components/input';
 import Task from './components/task';
 import { HomeViewModel } from './viewmodel/home.view.model';
 import { ITask } from './models/task.model';
+import { useGlobalContext } from './context/GlobalContext';
 
 export default function Home() {
-  const { createNewTask, search, setSearch, tasks } = HomeViewModel();
+  const { tasks } = useGlobalContext();
+  const { createNewTask, search, setSearch } = HomeViewModel();
 
   const renderItem = ({ item }: { item: ITask }) => {
     return (<Task {...item} />)
@@ -35,6 +37,7 @@ export default function Home() {
           data={tasks}
           renderItem={renderItem}
           scrollEnabled={false}
+          keyExtractor={(item) => item.id.toString()}
         />
       </S.Content>
      </S.Container>
