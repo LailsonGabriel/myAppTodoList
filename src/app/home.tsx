@@ -22,15 +22,14 @@ export default function Home() {
   const getHomeTasks = async () => {
     const userId = await AsyncStorage.getItem('@userId');
     AsyncStorage.getItem(`@tasks${userId}`).then((tasks) => {
-      if (tasks) {
-        setTasks(JSON.parse(tasks))
-      }
+      if (tasks) setTasks(JSON.parse(tasks))
     })
   }
 
   useFocusEffect(
     useCallback(() => {
       getHomeTasks();
+      
       const onBackPress = () => true;
 
       BackHandler.addEventListener('hardwareBackPress', onBackPress);
