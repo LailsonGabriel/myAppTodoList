@@ -5,17 +5,22 @@ import * as S from "./styles";
 import colors from "../../theme/colors";
 import { ITasks } from "../../models/task.model";
 import { useGlobalContext } from "../../context/GlobalContext";
+import tasksRepository from "../../repositories/tasks.repository";
 
 export default function Task({ title, id }: ITasks) {
   const { tasks, deleteTask, toggleTaskChecked } = useGlobalContext();
   const isChecked = tasks.find((task) => task.id === id)?.checked;
 
   const handleCheck = () => {
-    toggleTaskChecked(id);
+    toggleTaskChecked(id!!);
+    tasksRepository.toggleTaskChecked(id!!).then((response) => {
+      console.log(response.data);
+    }).catch((err) => console.log(err));
   };
 
   const handleDeleteTask = () => {
-    deleteTask(id);
+    deleteTask(id!!);
+    tasksRepository.deleteTask(id!!);
   };
 
   return (

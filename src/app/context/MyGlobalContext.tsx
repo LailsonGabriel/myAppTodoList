@@ -11,8 +11,22 @@ export default function MyGlobalContext({ children }: { children: React.ReactNod
     await AsyncStorage.setItem('@tasks', JSON.stringify(updatedTasks));
   };
 
-  const createNewTask = async (taskTitle: string) => {
-    const newTask = { id: Math.random(), title: taskTitle, checked: false };
+  const getUserId = async () => {
+    const userId = await AsyncStorage.getItem('@userId');
+    return userId ? JSON.parse(userId) : null;
+  };
+
+  const setUserId = async (userId: number) => {
+    await AsyncStorage.setItem('@userId', JSON.stringify(userId));
+  };
+
+  const getCpf = async () => {
+    const cpf = await AsyncStorage.getItem('@cpf');
+    return cpf ? cpf : null;
+  };
+
+  const createNewTask = async (taskTitle: string, id?: number) => {
+    const newTask = { id: id ?? Math.random(), title: taskTitle, checked: false };
     const updatedTasks = [...tasks, newTask];
     await saveTasks(updatedTasks);
   };
@@ -40,7 +54,12 @@ export default function MyGlobalContext({ children }: { children: React.ReactNod
     tasks,
     createNewTask,
     deleteTask,
-    toggleTaskChecked
+    toggleTaskChecked,
+    setTasks,
+    saveTasks,
+    getUserId,
+    setUserId,
+    getCpf
   };
 
   return (
