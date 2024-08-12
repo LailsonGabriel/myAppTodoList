@@ -1,6 +1,5 @@
 ## Atenção
-O aplicativo utiliza uma integração com a api de hospedagem gratuita, no primeiro acesso irá demorar bastante para carregar pois a api fica inativa caso não seja utilizada no intervalo de 15 minutos
-
+O aplicativo utiliza uma integração com a api de hospedagem gratuita, no primeiro acesso irá demorar bastante para carregar (PODE LOGAR COM QUALQUER CPF) pois a api fica inativa caso não seja utilizada no intervalo de 15 minutos
 # Meu Projeto React Native com Expo
 
 Bem-vindo ao projeto "To-Do List" desenvolvido com React Native e Expo! Este aplicativo é uma lista de tarefas simples que permite aos usuários adicionar, visualizar e gerenciar suas tarefas diárias. 
