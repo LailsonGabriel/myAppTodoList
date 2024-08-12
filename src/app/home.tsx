@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, FlatList } from 'react-native';
+import React, { useCallback } from 'react';
+import { View, Text, FlatList, BackHandler } from 'react-native';
 
 import * as S from './styles/home.style'
 import Header from './components/header';
@@ -8,14 +8,36 @@ import Task from './components/task';
 import { HomeViewModel } from './viewmodel/home.view.model';
 import { ITask } from './models/task.model';
 import { useGlobalContext } from './context/GlobalContext';
+import { useFocusEffect } from 'expo-router';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Home() {
-  const { tasks } = useGlobalContext();
+  const { tasks, setTasks } = useGlobalContext();
   const { createNewTask, search, setSearch } = HomeViewModel();
 
   const renderItem = ({ item }: { item: ITask }) => {
     return (<Task {...item} />)
   }
+
+  const getHomeTasks = async () => {
+    const userId = await AsyncStorage.getItem('@userId');
+    AsyncStorage.getItem(`@tasks${userId}`).then((tasks) => {
+      if (tasks) {
+        setTasks(JSON.parse(tasks))
+      }
+    })
+  }
+
+  useFocusEffect(
+    useCallback(() => {
+      getHomeTasks();
+      const onBackPress = () => true;
+
+      BackHandler.addEventListener('hardwareBackPress', onBackPress);
+
+      return () => BackHandler.removeEventListener('hardwareBackPress', onBackPress);
+    }, [])
+  );
 
   return (
     <S.Container>

@@ -3,9 +3,10 @@ import { IHomeViewModel } from "../models/home.model";
 import { useGlobalContext } from "../context/GlobalContext";
 import tasksRepository from "../repositories/tasks.repository";
 import { ToastAndroid } from "react-native";
+import { ITask } from "../models/task.model";
 
 export const HomeViewModel = (): IHomeViewModel => {
-  const { tasks, createNewTask, getCpf } = useGlobalContext();
+  const { createNewTask, getCpf } = useGlobalContext();
   const [search, setSearch] = useState<string>("");
 
   const handleCreateNewTask = async () => {

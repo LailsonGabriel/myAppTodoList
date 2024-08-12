@@ -7,7 +7,7 @@ import { ToastAndroid } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const LoginViewModel = (): ILoginViewModel => {
-  const { setTasks, saveTasks, setUserId } = useGlobalContext();
+  const { saveTasks } = useGlobalContext();
   const router = useRouter();
   const [loading, setLoading] = useState<boolean>(false);	
   const [cpf, setCpf] = useState<string>('');
@@ -28,9 +28,9 @@ export const LoginViewModel = (): ILoginViewModel => {
     setLoading(true);
     await AsyncStorage.setItem('@cpf', cpf);
     authRepository.login(cpf).then((response) => {
-      saveTasks(response.data.tasks);
-      setTasks(response.data.tasks);
-      setUserId(response.data.userId);
+      const { tasks, userId } = response.data;
+      console.log(response.data);
+      saveTasks(tasks, userId);
       router.push('home');
     }).catch((err) => {
       ToastAndroid.show(err.message ?? "Algo deu errado...", ToastAndroid.SHORT);

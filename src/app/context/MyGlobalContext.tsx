@@ -5,10 +5,17 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function MyGlobalContext({ children }: { children: React.ReactNode }) {
   const [tasks, setTasks] = useState<ITask[]>([]);
+  const [tasksLoaded, setTasksLoaded] = useState(false);
 
-  const saveTasks = async (updatedTasks: ITask[]) => {
+  const saveTasks = async (updatedTasks: ITask[], userId?: number) => {
+    console.log(updatedTasks, 'saveTasks')
     setTasks(updatedTasks);
-    await AsyncStorage.setItem('@tasks', JSON.stringify(updatedTasks));
+    console.log(tasks, '<--- tasks --->')
+    if (userId) {
+      await AsyncStorage.setItem('@userId', JSON.stringify(userId));
+    }
+    await AsyncStorage.setItem(`@tasks${userId}`, JSON.stringify(updatedTasks));
+    setTasksLoaded(true);
   };
 
   const getUserId = async () => {
@@ -44,11 +51,24 @@ export default function MyGlobalContext({ children }: { children: React.ReactNod
   };
 
   const verifyTasksInStorage = async () => {
-    const tasksInStorage = await AsyncStorage.getItem('@tasks');
-    if (tasksInStorage) setTasks(JSON.parse(tasksInStorage));
+    const userId = await getUserId();
+    if (userId) {
+      const tasksInStorage = await AsyncStorage.getItem(`@tasks${userId}`);
+      if (tasksInStorage) {
+        console.log('Tasks set:', JSON.parse(tasksInStorage));
+        setTasks(JSON.parse(tasksInStorage))
+      };
+    }
+    setTasksLoaded(true);
   };
+  
+  // useEffect(() => {
+  //   if (!tasksLoaded) verifyTasksInStorage();
+  // }, [tasksLoaded]);
 
-  useEffect(() => { verifyTasksInStorage() }, []);
+  useEffect(() => {
+    console.log(tasks, '<--- tasks updated in useEffect --->');
+  }, [tasks]);
 
   const reveal = {
     tasks,
