@@ -45,7 +45,7 @@ export default function Home() {
         <S.RowView>
           <Input
             placeholder="Adicione uma nova tarefa"
-            limit={14}
+            limit={999999}
             value={search}
             onChangeText={setSearch}
           />

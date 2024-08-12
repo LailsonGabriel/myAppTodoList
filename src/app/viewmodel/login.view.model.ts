@@ -25,6 +25,8 @@ export const LoginViewModel = (): ILoginViewModel => {
   };
 
   const onSubmit = async () => {
+    if(cpf.length < 14) return ToastAndroid.show("Digite um CPF válido!", ToastAndroid.SHORT);
+
     setLoading(true);
     await AsyncStorage.setItem('@cpf', cpf);
     authRepository.login(cpf).then((response) => {
